@@ -42,7 +42,7 @@ export default class extends mainViewClass {
           <div class="to-do-widget">
             <h2>To-Do List App</h2>
             <p>Get Started with Freeschema Frontend</p>
-            <router-link href="/toDoList" class="to-do-link">Launch To-Do List App</router-link>
+            <router-link href="/wrapper" class="to-do-link">Launch To-Do List App</router-link>
           </div>
           <div class="btn-group">
             ${buttonsHTML}
