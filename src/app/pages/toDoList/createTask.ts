@@ -21,7 +21,6 @@ import {
       let order: number = 1;
       let name = this.getElementById("name") as HTMLInputElement;
       let id = this.getElementById("id") as HTMLInputElement;
-  
       if (this.data) {
         name.value = this.data.name;
         id.value = this.data.id;
@@ -50,13 +49,14 @@ import {
                     CreateTheConnectionLocal(mainconcept.id, concept.id, mainconcept.id, order, "", userId)
                       .then(() => {
                         LocalSyncData.SyncDataOnline();
-                      })
-                   })
+                        this.notify();
+                    });
                 });
-             }
+            });
+          }
   
           console.log("Submit button clicked");
-        };
+        }
       }
     }
   
@@ -81,7 +81,7 @@ import {
               <button class="btn btn-primary" id="submit" type="submit">Submit</button>
             </div>
           </form>
-        </div>`;
+        </div>`
         return html;
     }
   }

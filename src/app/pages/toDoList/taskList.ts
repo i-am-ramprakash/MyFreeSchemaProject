@@ -21,8 +21,8 @@ export class list extends StatefulWidget {
   after_render() {
     let tableElement = this.getElementById("mainbody");
     if (tableElement) {
+      tableElement.innerHTML = "";
       console.log("this is the element", tableElement, this.todolist.length);
-
       if (this.todolist.length > 0) {
         for (let i = 0; i < this.todolist.length; i++) {
           let id = this.todolist[i].the_todolist?.id;
@@ -33,21 +33,20 @@ export class list extends StatefulWidget {
             let col1 = document.createElement("td");
             let col2 = document.createElement("td");
             let col3 = document.createElement("td");
-            let name = document.createElement("span");
-            let nameValue = this.todolist[i].the_todolist.name;
-            name.innerHTML = nameValue;
+
+            let nameValue = document.createElement("span");
+            nameValue.innerHTML = this.todolist[i].the_todolist.name;
 
             let edit = document.createElement("button");
             edit.setAttribute("class", "btn btn-primary");
-            edit.setAttribute("padding", "10px");
-            edit.id = this.todolist[i].the_todolist.id;
+            edit.id = id;
             edit.innerHTML = "edit";
 
             let del = document.createElement("button");
             del.setAttribute("class", "btn btn-primary");
-            del.setAttribute("padding", "10px");
-            del.id = this.todolist[i].the_todolist.id;
+            del.id = id;
             del.innerHTML = "Delete";
+
             del.onclick = () => {
               if (id) {
                 DeleteConceptById(id).then(() => {
@@ -61,13 +60,13 @@ export class list extends StatefulWidget {
               that.data = {
                 "id": edit.id,
                 "name": nameValue,
-              };
+              }
               console.log("this is the update click", that.data, that.subscribers);
 
               that.notify();
-            };
+            }
 
-            col1.append(name);
+            col1.append(nameValue);
             col2.append(del);
             col3.append(edit);
 
